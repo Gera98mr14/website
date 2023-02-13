@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prueba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="js/cargardat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <div class="contenido-navegacion">
+            <div class="logo">
+            </div>
+        </div>
+        
+    </header>
+
+    <div class="box-titulo">
+        <h2>REPORTE DE AVANCE PRESUPUESTAL</h2>
+    </div>
+    <br>
+
+    <div class="container-initial">
+        <div class="form-input">
+            <label>PRESUPUESTO</label>
+            <span class="icon1"><i class="fa fa-usd" aria-hidden="true"></i></span>
+            <input type="text" name="Inp1" id="Inp1">
+            <br>
+        </div>
+        <div class="form-input">
+            <label>EJERCIDO</label>
+            <span class="icon2"><i class="fa fa-percent" aria-hidden="true"></i></span>
+            <input type="text" name="Inp2" id="Inp2">
+        </div>
+        <div class="form-input">
+            <label>NO EJERCIDO</label>
+            <span class="icon3"><i class="fa fa-percent" aria-hidden="true"></i></span>
+            <input type="text" name="Inp3" id="Inp3">
+        </div>
+    </div>
+    <div class="container-initial-2" >
+        <label1 name="Ej1" id="Ej1"></label1>
+        <label1 name="Noej1" id="Noej1"></label1>
+    </div>
+
+    <div class="container">
+        <canvas id="chart" height="40" width="200"></canvas>
+    </div>
+
+    <form id="f1" name="f1">
+        <div class="container"> 
+            <div class="select">
+               <select class="" name="cmb1" id="cmb1" onchange="cadenacmb22()">
+                  <option selected disabled value="">SECRETARÍA</option>
+                  <option value="1">SEDESHA</option>
+                  <option value="2">CODE</option>
+                  <option value="3">SEG</option>
+                  <option value="4">SDES</option>
+                  <option value="5">SSP</option>
+               </select>
+            </div>
+
+            <div class="select">
+               <select class="" name="cmb2" id="cmb2">
+                  <option selected disabled value="">SUBSECRETARÍA</option>
+               </select>
+            </div>
+
+            <div class="select">
+               <select name="cmb3" id="cmb3">
+                  <option selected disabled value="">PROYECTO</option>
+               </select>
+            </div>
+
+            <div class="buttons">
+                <a href="#" type="submit" class="btn btn-1" onclick="buscar();">FILTRAR</a>
+                <a href="#" type="submit" class="btn btn-2" onclick="limpiar();">LIMPIAR</a>
+            </div>
+       
+        </div>
+    </form>
+
+    <table class="styled-table" id="dtdatos">
+        <thead>
+            <tr>
+                <th hidden="">ID</th>
+                <th>Secretaría</th>
+                <th>Subsecretaría</th>
+                <th>Proyecto</th>
+                <th>Presupuesto Original</th>
+                <th>Presupuesto Modificado</th>
+                <th>Presupuesto Comprometido</th>
+                <th>Presupuesto Devengado</th>
+                <th>Presupuesto Pagado</th>
+                <th>Presupuesto Ejercido</th>
+                <th>Saldo No Ejercido</th>
+                <th>Saldo No Ejercido Estatal</th>
+                <th>Saldo No Ejercido Federal </th>
+                                      
+            </tr>
+        </thead>
+        <tbody>                                                  
+            <tr id="tr1">
+                <td hidden="">1</td>
+                <td>SEDESHA</td>
+                <td>INFORMACION 1</td>
+                <td>PROYECTO 1</td>
+                <td id="tt1">67000000</td>
+                <td>69000000</td>
+                <td>50000000</td>
+                <td>50000000</td>
+                <td>60000000</td>
+                <td id="pe1">60000000</td>
+                <td id="sn1">7000000</td>
+                <td>7000000</td>
+                <td>1000000</td>
+            </tr>  
+            <tr id="tr2">
+                <td hidden="">2</td>
+                <td>CODE</td>
+                <td>INFORMACION 2</td>
+                <td>PROYECTO 2</td>
+                <td id="tt2">54000000</td>
+                <td>58000000</td>
+                <td>45000000</td>
+                <td>45000000</td>
+                <td>50000000</td>
+                <td id="pe2">50000000</td>
+                <td id="sn2">4000000</td>
+                <td>3000000</td>
+                <td>500000</td>
+            </tr>  
+            <tr id="tr3">
+                <td hidden="">3</td>
+                <td>SEG</td>
+                <td>INFORMACION 3</td>
+                <td>PROYECTO 3</td>
+                <td id="tt3">0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td id="pe3">0</td>
+                <td id="sn3">0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>  
+            <tr id="tr4">
+                <td hidden="">4</td>
+                <td>SDES</td>
+                <td>INFORMACION 4</td>
+                <td>PROYECTO 4</td>
+                <td id="tt4">73000000</td>
+                <td>76000000</td>
+                <td>68000000</td>
+                <td>68000000</td>
+                <td>71000000</td>
+                <td id="pe4">70000000</td>
+                <td id="sn4">3000000</td>
+                <td>10000000</td>
+                <td>4000000</td>
+            </tr>   
+            <tr id="tr5">
+                <td hidden="">5</td>
+                <td>SSP</td>
+                <td>INFORMACION 5</td>
+                <td>PROYECTO 5</td>
+                <td id="tt5">0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td id="pe5">0</td>
+                <td id="sn5">0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>                                               
+        </tbody>
+    </table>
+    <br><br><br>
+
+</body>
+
+<script>
+    $(document).ready(function() {
+        $("#tr1").hide();
+        $("#tr2").hide();
+        $("#tr3").hide();
+        $("#tr4").hide();
+        $("#tr5").hide();
+    });
+
+</script>
+
+<script>
+        var ch = document.getElementById('chart').getContext('2d');
+        var myBarChart = new Chart(ch, {
+            type: 'bar',
+            data: {
+                labels: ['Presupuesto Original','Presupuesto Modificado','Presupuesto Comprometido','Presupuesto Devengado','Presupuesto Pagado','Presupuesto Ejercido','Saldo No Ejercido','Saldo No Ejercido Estatal','Saldo No Ejercido Federal'],
+                datasets: [{
+                    label: 'Total Secretaría',
+                    data: [913087867, 2419735043, 292859910, 7446448, 2083385032, 2383691390, 36043652, 35945035, 98616],
+                    backgroundColor: ['#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72'],
+                    borderColor: ['#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72','#1B4F72'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales:{
+                    yAxes:[{
+                        ticks:{
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+</script>
+
+</html>
